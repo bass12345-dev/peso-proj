@@ -56,8 +56,30 @@
      $('#login_form').on('submit', function(e) {
     e.preventDefault();
 
-        window.location.href = 'dashboard';
+        // window.location.href = 'dashboard';
 
+
+    $('#form_submit').text('');
+    $('#form_submit').html('<span class="loader"></span>');
+    // $("#form_submit").attr("disabled", "disabled").off('click');
+    // $('button[type="submit"]').attr('disabled','disabled');
+
+        //  $.ajax({
+        //     type: "POST",
+        //     url: base_url + 'Login/verify',
+        //     data: $(this).serialize(),
+        //     dataType: 'json',
+        //     beforeSend: function() {
+        //         $('#form_submit').text('Please wait...');
+        //         $('button[type="submit"]').attr('disabled','disabled');
+        //     },
+        //     success: function(data)
+        //     {            
+
+
+        //     }
+
+        // })
     })
 
 
