@@ -44,12 +44,12 @@
                         <div class="login-form-body">
                             <div class="form-gp">
                                 <label for="exampleInputEmail1">Username</label>
-                                    <input type="text" id="exampleInputUsername" name="username" >
+                                    <input type="text" id="exampleInputUsername" name="username" required >
                                         <i class="ti-user"></i>
                             </div>
                             <div class="form-gp">
                                 <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" id="exampleInputPassword1" name="password">
+                                    <input type="password" id="exampleInputPassword1" name="password" required>
                                         <i class="ti-lock"></i>
                             </div>
                             <!-- <div class="row mb-4 rmber-area">

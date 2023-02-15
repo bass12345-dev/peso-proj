@@ -58,28 +58,28 @@
 
         // window.location.href = 'dashboard';
 
+         $.ajax({
+            type: "POST",
+            url: base_url + 'Login/verify',
+            data: $(this).serialize(),
+            dataType: 'json',
+            beforeSend: function() {
+    
+                
+                    $('#form_submit').text('');
+                    $('#form_submit').html('<span class="loader"></span>');
+                    $('button[type="submit"]').attr('disabled','disabled');
+                    $("#form_submit").attr("disabled", "disabled").off('click');
+            },
+            success: function(data)
+            {            
 
-    $('#form_submit').text('');
-    $('#form_submit').html('<span class="loader"></span>');
-    // $("#form_submit").attr("disabled", "disabled").off('click');
-    // $('button[type="submit"]').attr('disabled','disabled');
+                    if (data) {
+                        window.location.href = 'dashboard';
+                    }
+            }
 
-        //  $.ajax({
-        //     type: "POST",
-        //     url: base_url + 'Login/verify',
-        //     data: $(this).serialize(),
-        //     dataType: 'json',
-        //     beforeSend: function() {
-        //         $('#form_submit').text('Please wait...');
-        //         $('button[type="submit"]').attr('disabled','disabled');
-        //     },
-        //     success: function(data)
-        //     {            
-
-
-        //     }
-
-        // })
+        })
     })
 
 

@@ -8,4 +8,18 @@ class Login extends CI_Controller {
 	{
 		$this->load->view('auth/login');
 	}
+
+
+	public function verify(){
+
+
+		$info = array(
+
+				'username' => $this->input->post('username'),
+				'password' => $this->input->post('password'),
+				
+		);
+
+		echo json_encode($info);
+	}
 }
