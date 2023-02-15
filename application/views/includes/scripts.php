@@ -35,8 +35,11 @@
     <!-- <script src="assets/js/scripts.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.all.min.js" integrity="sha512-KfbhdnXs2iEeelTjRJ+QWO9veR3rm6BocSoNoZ4bpPIZCsE1ysIRHwV80yazSHKmX99DM0nzjoCZjsjNDE628w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <script type="text/javascript">
+
+
 
 
       var base_url = '<?php echo base_url(); ?>';
@@ -44,7 +47,61 @@
 (function($) {
     "use strict";
 
-    //Add Responsibility Center
+
+
+      /*================================
+    Responsibility Center
+    ==================================*/
+
+    //Datatable
+
+    // if ($('#responsibility_table').length) {
+   var res_center_table = $('#responsibility_table').DataTable({
+            responsive: false,
+            "ajax" : {
+                        "url": base_url + 'Responsibility_center/get_center',
+                        "dataSrc": "",
+            },
+             'columns': [
+            {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<span href="javascript:;"   data-id="'+data['res_center_id']+'"  style="color: #000;" >'+data['res_center_code']+'</span>';
+                }
+
+            },
+             {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<span href="javascript:;"   data-id="'+data['res_center_id']+'" id="kt_explore_toggle" style="color: #000;" >'+data['res_center_name']+'</span>';
+                }
+
+            },
+            {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<ul class="d-flex justify-content-center">\
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'+data['res_center_id']+'" data-name="'+data['res_center_name']+'" data-code="'+data['res_center_code']+'" id="update-center"><i class="fa fa-edit"></i></a></li>\
+                                <li><a href="javascript:;" data-id="'+data['res_center_id']+'"  id="delete-center"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>\
+                                </ul>';
+                }
+
+            },
+          ]
+        });
+
+
+
+
+    // }
+
+
+
+
+   //Add Responsibility Center
 
     $('#add_responsibility_center_form').on('submit', function(e) {
     e.preventDefault();
@@ -53,15 +110,196 @@
             type: "POST",
             url: base_url + 'Responsibility_center/add',
             data: $(this).serialize(),
-            success: function(response)
-            {
-                alert('success')
-           }
+            dataType: 'json',
+            beforeSend: function() {
+                $('.btn-add-center').text('Please wait...');
+                $('button[type="submit"]').attr('disabled','disabled');
+            },
+            success: function(data)
+            {            
+                if (data.response) {
+                    $('#add_responsibility_center_form')[0].reset();
+                    $('.btn-add-center').text('Submit');
+                    $('button[type="submit"]').attr('disabled','disabled');
+                    
+                     $('.alert').html(' <div class="alert-dismiss mt-2">\
+                                                        <div class="alert alert-success alert-dismissible fade show" role="alert">\
+                                                            <strong>'+data.message+'.\
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span>\
+                                                            </button>\
+                                                            </div>\
+                                                    </div>');
+                    res_center_table.ajax.reload();
+                }else {
+                    $('.btn-add-center').text('Submit');
+                    $('button[type="submit"]').attr('disabled','disabled');
+                     $('.alert').html(' <div class="alert-dismiss mt-2">\
+                                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">\
+                                                            <strong>'+data.message+'.\
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span>\
+                                                            </button>\
+                                                            </div>\
+                                                    </div>');
+                }
+           },
+            error: function(xhr) { // if error occured
+                alert("Error occured.please try again");
+                $('.btn-add-center').text('Submit');
+                $('button[type="submit"]').attr('disabled','disabled');
+            },
        });
 
 
 
+    });
+
+
+
+    //Delete Responsibility Center
+
+
+     $(document).on('click','a#delete-center',function (e) {
+
+
+        var id = $(this).data('id');
+        var table = res_center_table;
+        del(id,table);        
+     })
+
+     //update 
+
+     $(document).on('click','a#update-center',function (e) {
+
+   
+        $('#update_center_modal').modal('show');
+        $('input[id=res_center_id]').val($(this).data('id'));
+        $('input[name=update_center_code]').val($(this).data('code'));
+        $('input[name=update_center_name]').val($(this).data('name'));
+
+
+     })
+
+
+
+    $('#update_responsibility_center_form').on('submit', function(e) {
+    e.preventDefault();
+
+    $.ajax({
+            type: "POST",
+            url: base_url + 'Responsibility_center/update',
+            data: $(this).serialize(),
+            dataType: 'json',
+            beforeSend: function() {
+                $('.btn-update-center').text('Please wait...');
+                $('button[name="btn-update-center"]').prop("disabled", true);
+                
+            },
+             success: function(data)
+            {            
+                if (data.response) {
+                    $('#update_center_modal').modal('hide');
+                    res_center_table.ajax.reload();
+                    $('button[name="btn-update-center"]').prop("disabled", false);
+                    $('.btn-update-center').text('Submit Changes');
+                        Toastify({
+                                  text: data.message,
+                                  className: "info",
+                                  style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                  }
+                                }).showToast();
+                }else {
+                   $('button[name="btn-update-center"]').prop("disabled", false);
+                    $('.btn-update-center').text('Submit Changes');
+                    $('.alert').html(' <div class="alert-dismiss mt-2">\
+                                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">\
+                                                            <strong>'+data.message+'.\
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span>\
+                                                            </button>\
+                                                            </div>\
+                                                    </div>');
+                }
+           },
+            error: function(xhr) { // if error occured
+                alert("Error occured.please try again");
+                $('.btn-add-center').text('Submit');
+                $('button[type="submit"]').attr('disabled','disabled');
+            },
+
+        })
+
     })
+
+
+
+
+    //delete function
+
+     function del(id,table){
+
+           Swal.fire({
+        title: "Are you sure?",
+        text: "You wont be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+    }).then(function(result) {
+        if (result.value) {
+            
+                    $.ajax({
+                            type: "POST",
+                            url: base_url + 'Responsibility_center/delete',
+                            data: {id:id},
+                            cache: false,
+                            dataType: 'json', 
+                            beforeSend : function(){
+
+                                  Swal.fire({
+                                title: "",
+                                text: "Please Wait",
+                                icon: "",
+                                showCancelButton: false,
+                                showConfirmButton : false,
+                                reverseButtons: false,
+                                allowOutsideClick : false
+                            })
+
+                            },
+                            success: function(data){
+                               if (data.response) {
+
+                                  Swal.fire(
+                "",
+                "Deleted Successfully",
+                "success"
+            )
+                                
+                               }
+
+                                table.ajax.reload();
+                            }
+                    })
+
+
+
+            // result.dismiss can be "cancel", "overlay",
+            // "close", and "timer"
+        } else if (result.dismiss === "cancel") {
+           swal.close()
+
+        }
+    });
+
+     }
+
+
+
+
 
     /*================================
     Preloader
