@@ -120,8 +120,7 @@
                 if (data.response) {
                     $('#add_responsibility_center_form')[0].reset();
                     $('.btn-add-center').text('Submit');
-                    $('button[type="submit"]').attr('disabled','disabled');
-                    
+                    $('button[type="submit"]').removeAttr('disabled');
                      $('.alert').html(' <div class="alert-dismiss mt-2">\
                                                         <div class="alert alert-success alert-dismissible fade show" role="alert">\
                                                             <strong>'+data.message+'.\
@@ -129,10 +128,11 @@
                                                             </button>\
                                                             </div>\
                                                     </div>');
+                      
                     res_center_table.ajax.reload();
                 }else {
                     $('.btn-add-center').text('Submit');
-                    $('button[type="submit"]').attr('disabled','disabled');
+                     $('button[type="submit"]').removeAttr('disabled');
                      $('.alert').html(' <div class="alert-dismiss mt-2">\
                                                         <div class="alert alert-warning alert-dismissible fade show" role="alert">\
                                                             <strong>'+data.message+'.\
@@ -140,10 +140,12 @@
                                                             </button>\
                                                             </div>\
                                                     </div>');
+
                 }
            },
             error: function(xhr) { // if error occured
                 alert("Error occured.please try again");
+                 $('button[type="submit"]').removeAttr('disabled');
                 $('.btn-add-center').text('Submit');
                 $('button[type="submit"]').attr('disabled','disabled');
             },
@@ -163,7 +165,8 @@
 
         var id = $(this).data('id');
         var table = res_center_table;
-        del(id,table);        
+        var url = 'Responsibility_center/delete';
+        del(id,table,url);        
      })
 
      //update 
@@ -200,7 +203,7 @@
                     $('#update_center_modal').modal('hide');
                     res_center_table.ajax.reload();
                     $('button[name="btn-update-center"]').prop("disabled", false);
-                    $('.btn-update-center').text('Submit Changes');
+                    $('.btn-update-center').text('Save Changes');
                         Toastify({
                                   text: data.message,
                                   className: "info",
@@ -213,7 +216,7 @@
                                 }).showToast();
                 }else {
                    $('button[name="btn-update-center"]').prop("disabled", false);
-                    $('.btn-update-center').text('Submit Changes');
+                    $('.btn-update-center').text('Save Changes');
                     $('.alert').html(' <div class="alert-dismiss mt-2">\
                                                         <div class="alert alert-warning alert-dismissible fade show" role="alert">\
                                                             <strong>'+data.message+'.\
@@ -225,7 +228,7 @@
            },
             error: function(xhr) { // if error occured
                 alert("Error occured.please try again");
-                $('.btn-add-center').text('Submit');
+                $('.btn-add-center').text('Save Changes');
                 $('button[type="submit"]').attr('disabled','disabled');
             },
 
@@ -238,7 +241,7 @@
 
     //delete function
 
-     function del(id,table){
+     function del(id,table,url){
 
            Swal.fire({
         title: "Are you sure?",
@@ -253,7 +256,7 @@
             
                     $.ajax({
                             type: "POST",
-                            url: base_url + 'Responsibility_center/delete',
+                            url: base_url +url,
                             data: {id:id},
                             cache: false,
                             dataType: 'json', 
@@ -296,6 +299,180 @@
     });
 
      }
+
+
+       /*================================
+    Type of Activity
+    ==================================*/
+
+
+       var activity_table = $('#activity_table').DataTable({
+            responsive: false,
+            "ajax" : {
+                        "url": base_url + 'Type_of_Activity/get_type',
+                        "dataSrc": "",
+            },
+             'columns': [
+            {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<span href="javascript:;"   data-id="'+data['res_center_id']+'"  style="color: #000;" >'+data['type_act_name']+'</span>';
+                }
+
+            },
+            {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<ul class="d-flex justify-content-center">\
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'+data['type_act_id']+'" data-name="'+data['type_act_name']+'" id="update-activity"><i class="fa fa-edit"></i></a></li>\
+                                <li><a href="javascript:;" data-id="'+data['type_act_id']+'"  id="delete-activity"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>\
+                                </ul>';
+                }
+
+            },
+          ]
+        });
+
+
+
+
+
+      $('#add_activity_form').on('submit', function(e) {
+    e.preventDefault();
+
+    $.ajax({
+            type: "POST",
+            url: base_url + 'Type_of_Activity/add',
+            data: $(this).serialize(),
+            dataType: 'json',
+            beforeSend: function() {
+                $('.btn-add-activity').text('Please wait...');
+                $('button[type="submit"]').attr('disabled','disabled');
+            },
+            success: function(data)
+            {            
+                if (data.response) {
+                    $('#add_activity_form')[0].reset();
+                    $('.btn-add-activity').text('Submit');
+                    $('button[type="submit"]').removeAttr('disabled');
+                    $('.alert').html(' <div class="alert-dismiss mt-2">\
+                                                        <div class="alert alert-success alert-dismissible fade show" role="alert">\
+                                                            <strong>'+data.message+'.\
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span>\
+                                                            </button>\
+                                                            </div>\
+                                                    </div>');
+                    
+                   
+                    activity_table.ajax.reload();
+                }else {
+                    $('.btn-add-activity').text('Submit');
+                   $('button[type="submit"]').removeAttr('disabled');
+                     $('.alert').html(' <div class="alert-dismiss mt-2">\
+                                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">\
+                                                            <strong>'+data.message+'.\
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span>\
+                                                            </button>\
+                                                            </div>\
+                                                    </div>');
+                }
+           },
+            error: function(xhr) { // if error occured
+                alert("Error occured.please try again");
+                $('.btn-add-activity').text('Submit');
+                $('button[type="submit"]').attr('disabled','disabled');
+            },
+       });
+
+
+
+    });
+
+
+
+
+
+    $(document).on('click','a#delete-activity',function (e) {
+
+
+        var id = $(this).data('id');
+        var table = activity_table;
+        var url = 'Type_of_Activity/delete'
+        del(id,table,url);        
+     })
+
+
+
+         //update 
+
+     $(document).on('click','a#update-activity',function (e) {
+
+   
+        $('#update_activity_modal').modal('show');
+        $('input[id=activity_id]').val($(this).data('id'));
+        $('input[name=update_activity]').val($(this).data('name'));
+
+
+     });
+
+
+
+     $('#update_activity_form').on('submit', function(e) {
+    e.preventDefault();
+
+
+    $.ajax({
+            type: "POST",
+            url: base_url + 'Type_of_Activity/update',
+            data: $(this).serialize(),
+            dataType: 'json',
+            beforeSend: function() {
+                $('.btn-update-activity').text('Please wait...');
+                $('button[name="btn-update-activity"]').prop("disabled", true);
+                
+            },
+             success: function(data)
+            {            
+                if (data.response) {
+                    $('#update_activity_modal').modal('hide');
+                    activity_table.ajax.reload();
+                    $('button[name="btn-update-activity"]').prop("disabled", false);
+                    $('.btn-update-activity').text('Save Changes');
+                        Toastify({
+                                  text: data.message,
+                                  className: "info",
+                                  style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                  }
+                                }).showToast();
+                }else {
+                   $('button[name="btn-update-activity"]').prop("disabled", false);
+                    $('.btn-update-activity').text('Save Changes');
+                    $('.alert').html(' <div class="alert-dismiss mt-2">\
+                                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">\
+                                                            <strong>'+data.message+'.\
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span>\
+                                                            </button>\
+                                                            </div>\
+                                                    </div>');
+                }
+           },
+            error: function(xhr) { // if error occured
+                alert("Error occured.please try again");
+                $('.btn-update-activity').text('Save Changes');
+                $('button[type="submit"]').attr('disabled','disabled');
+            },
+
+        })
+
+    })
+
+
 
 
 

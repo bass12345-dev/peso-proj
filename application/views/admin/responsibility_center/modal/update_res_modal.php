@@ -14,11 +14,11 @@
                       <div class="form-group">
                           <label for="exampleInputEmail1">Responsibility Center Code</label>
                           <input type="text" class="form-control"  name="update_center_code" placeholder="">
-                          <input type="hidden" class="form-control" id="res_center_id" name="res_center_id" placeholder="">
+                          <input type="hidden" class="form-control" id="res_center_id" name="res_center_id" placeholder="" required>
                       </div>
                       <div class="form-group">
                           <label for="exampleInputPassword1">Responsibility Center Name</label>
-                          <input type="text" class="form-control" name="update_center_name"  placeholder="">
+                          <input type="text" class="form-control" name="update_center_name"  placeholder="" required>
                       </div>
                       <div class="alert"></div>
                   </div>
