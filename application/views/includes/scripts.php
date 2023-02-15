@@ -50,6 +50,21 @@
 
 
       /*================================
+    Login 
+    ==================================*/
+
+     $('#login_form').on('submit', function(e) {
+    e.preventDefault();
+
+        window.location.href = 'dashboard';
+
+    })
+
+
+
+
+
+      /*================================
     Responsibility Center
     ==================================*/
 
