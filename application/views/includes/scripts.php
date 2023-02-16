@@ -50,6 +50,7 @@
     "use strict";
 
 
+   
 
       /*================================
     Login 
@@ -66,19 +67,61 @@
             data: $(this).serialize(),
             dataType: 'json',
             beforeSend: function() {
-    
-                
-                    $('#form_submit').text('');
+
+                    
                     $('#form_submit').html('<span class="loader"></span>');
-                    $('button[type="submit"]').attr('disabled','disabled');
-                    $("#form_submit").attr("disabled", "disabled").off('click');
+                    $('#form_submit').attr('disabled','disabled');
+                   
             },
             success: function(data)
             {            
 
-                    if (data) {
-                        window.location.href = 'dashboard';
-                    }
+                if (data.response) {
+
+                   if (data.res) {
+
+                         window.location.href = '<?php echo base_url() ?>';
+                            
+                   }else {
+
+                  
+
+                     Swal.fire({
+                        text: data.message,
+                        icon: "error",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        customClass: {
+                            confirmButton: "btn btn-primary"
+                        }
+                    });
+
+                    $("#form_submit").removeAttr('disabled');
+                    $('#form_submit').text('Login');
+                    $('#form_submit').remove('<span class="loader"></span>');
+                    
+
+
+                   }
+                }else {
+
+                   
+                    Swal.fire({
+                        text: data.message,
+                        icon: "error",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        customClass: {
+                            confirmButton: "btn btn-primary"
+                        }
+                    });
+
+                    $("#form_submit").removeAttr('disabled');
+                    $('#form_submit').text('Login');
+                    $('#form_submit').remove('<span class="loader"></span>');
+                    
+
+                }
             }
 
         })
@@ -348,10 +391,10 @@
        var activity_table = $('#activity_table').DataTable({
 
             responsive: false,
-             dom: 'Bfrtip',
-        buttons: [
-           'print'
-        ],
+        //      dom: 'Bfrtip',
+        // buttons: [
+        //    'print'
+        // ],
             "ajax" : {
                         "url": base_url + 'Type_of_Activity/get_type',
                         "dataSrc": "",
@@ -361,7 +404,7 @@
                 // data: "song_title",
                 data: null,
                 render: function (data, type, row) {
-                    return '<span href="javascript:;"   data-id="'+data['res_center_id']+'"  style="color: #000;" class="table-font-size" >'+data['type_act_name']+'</span>';
+                    return '<span href="javascript:;"   data-id="'+data['res_center_id']+'"  style="color: #000;"  >'+data['type_act_name']+'</span>';
                 }
 
             },
@@ -381,12 +424,14 @@
         });
 
 
+    
+
     var under_type_activity_table = $('#under_activity_table').DataTable({
 
 
 
             "ajax" : {
-                        "url": base_url + 'Type_of_Activity/get_under_type',
+                        "url": base_url + 'Type_of_Activity/get_under_type?id=' + $('input[name=activity_id]').val(),
                         "dataSrc": "",
             },
              'columns': [
@@ -394,7 +439,7 @@
                 // data: "song_title",
                 data: null,
                 render: function (data, type, row) {
-                    return '<span href="javascript:;"   data-id="'+data['under_type_act_id']+'"  style="color: #000;" class="table-font-size" >'+data['under_type_act_name']+'</span>';
+                    return '<span href="javascript:;"   data-id="'+data['under_type_act_id']+'"  style="color: #000;" >'+data['under_type_act_name']+'</span>';
                 }
 
             },
@@ -410,7 +455,7 @@
 
             },
           ]
-    })
+    });
 
 
     $(document).on('click','a#update-under-activity',function (e) {
@@ -522,15 +567,7 @@
     });
 
 
-
-
-    
-
-
-
-
-
-    $(document).on('click','a#delete-activity',function (e) {
+       $(document).on('click','a#delete-activity',function (e) {
 
 
         var id = $(this).data('id');
@@ -607,6 +644,184 @@
         })
 
     })
+
+
+
+
+       /*================================
+    Responsible Section
+    ==================================*/
+
+
+    var responsible_section_table = $('#responsible_section_table').DataTable({
+
+
+           "ajax" : {
+                        "url": base_url + 'Responsible_section/get',
+                        "dataSrc": "",
+            },
+             'columns': [
+            {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<span href="javascript:;"   data-id="'+data['type_mon_id']+'"  style="color: #000;" class="table-font-size" >'+data['type_mon_name']+'</span>';
+                }
+
+            },
+            {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<ul class="d-flex justify-content-center">\
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'+data['type_mon_id']+'" data-name="'+data['type_mon_name']+'" id="update-responsible"><i class="fa fa-edit"></i></a></li>\
+                                <li><a href="javascript:;" data-id="'+data['type_mon_id']+'"  id="delete-responsible"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>\
+                                </ul>';
+                }
+
+            },
+          ]
+
+    })
+
+
+    
+
+
+     $('#add_responsible_section_form').on('submit', function(e) {
+    e.preventDefault();
+
+    $.ajax({
+            type: "POST",
+            url: base_url + 'Responsible_section/add',
+            data: $(this).serialize(),
+            dataType: 'json',
+            beforeSend: function() {
+                $('.btn-add-responsible').text('Please wait...');
+                $('.btn-add-responsible').attr('disabled','disabled');
+            },
+             success: function(data)
+            {            
+                if (data.response) {
+                    $('#add_responsible_section_form')[0].reset();
+                    $('.btn-add-responsible').text('Submit');
+                    $('.btn-add-responsible').removeAttr('disabled');
+                    $('.alert').html(' <div class="alert-dismiss mt-2">\
+                                                        <div class="alert alert-success alert-dismissible fade show" role="alert">\
+                                                            <strong>'+data.message+'.\
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span>\
+                                                            </button>\
+                                                            </div>\
+                                                    </div>');
+                    
+                   
+                    responsible_section_table.ajax.reload();
+                }else {
+                    $('.btn-add-responsible').text('Submit');
+                   $('.btn-add-responsible').removeAttr('disabled');
+                     $('.alert').html(' <div class="alert-dismiss mt-2">\
+                                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">\
+                                                            <strong>'+data.message+'.\
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span>\
+                                                            </button>\
+                                                            </div>\
+                                                    </div>');
+                }
+           },
+            error: function(xhr) { // if error occured
+                alert("Error occured.please try again");
+                $('.btn-add-responsible').text('Submit');
+                 $('.btn-add-responsible').removeAttr('disabled');
+            },
+
+
+        });
+
+    });
+
+
+
+    $(document).on('click','a#delete-responsible',function (e) {
+
+
+        var id = $(this).data('id');
+        var table = responsible_section_table;
+        var url = 'Responsible_section/delete'
+        del(id,table,url);        
+     })
+
+
+
+
+
+     $(document).on('click','a#update-responsible',function (e) {
+
+   
+        $('#update_responsible_modal').modal('show');
+        $('input[id=responsible_id]').val($(this).data('id'));
+        $('input[name=update_responsible]').val($(this).data('name'));
+
+
+     });
+
+
+
+      $('#update_responsible_form').on('submit', function(e) {
+    e.preventDefault();
+
+
+    $.ajax({
+            type: "POST",
+            url: base_url + 'Responsible_section/update',
+            data: $(this).serialize(),
+            dataType: 'json',
+            beforeSend: function() {
+                $('.btn-update-responsible').text('Please wait...');
+                $('.btn-update-responsible').prop("disabled", true);
+                
+            },
+             success: function(data)
+            {            
+                if (data.response) {
+                    $('#update_activity_modal').modal('hide');
+                    responsible_section_table.ajax.reload();
+                    $('.btn-update-responsible').prop("disabled", false);
+                    $('.btn-update-responsible').text('Save Changes');
+                        Toastify({
+                                  text: data.message,
+                                  className: "info",
+                                  style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                  }
+                                }).showToast();
+                }else {
+                   $('.btn-update-responsible').prop("disabled", false);
+                    $('.btn-update-activity').text('Save Changes');
+                    $('.alert').html(' <div class="alert-dismiss mt-2">\
+                                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">\
+                                                            <strong>'+data.message+'.\
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span>\
+                                                            </button>\
+                                                            </div>\
+                                                    </div>');
+                }
+           },
+            error: function(xhr) { // if error occured
+                alert("Error occured.please try again");
+                $('.btn-update-responsible').text('Save Changes');
+                 $('.btn-update-responsible').prop("disabled", false);
+            },
+
+        })
+
+    })
+
+
+
+   
 
 
 

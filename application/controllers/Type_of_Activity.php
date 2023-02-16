@@ -47,7 +47,8 @@ class Type_of_activity extends CI_Controller {
 	public function get_under_type(){
 
 		$data = [];
-		$data = $this->GetModel->getALLunderTYPE(); 
+		$where = array('typ_ac_id' => $_GET['id']);
+		$data = $this->GetModel->get($this->under_type_of_activity,$where); 
 		echo json_encode($data);
 	}
 

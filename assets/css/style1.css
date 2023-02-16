@@ -2422,6 +2422,8 @@ table.dataTable thead td {
     color: #ffffff;
 }
 
+
+
 .submit-btn-area button i {
     margin-left: 15px;
     -webkit-transition: margin-left 0.3s ease 0s;
@@ -2508,7 +2510,7 @@ table.dataTable thead td {
 /* login-s3 */
 
 .login-bg {
-    background: url(../images/bg/singin-bg.jpg) center/cover no-repeat;
+    background: url(../../peso_w.jpg) center/cover no-repeat;
     position: relative;
     z-index: 1;
 }
