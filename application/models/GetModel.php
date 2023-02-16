@@ -24,6 +24,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       }
 
 
+      public function getAllunderTYPE(){
+
+             $this->db->from('under_type_of_activity');
+            $this->db->join('type_of_activity','type_of_activity.type_act_id = under_type_of_activity.typ_ac_id');
+            $this->db->order_by('under_type_act_name','ASC');
+            return $this->db->get()->result_array();
+      }
 
    } 
  ?>

@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
+
 <!-- others css -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/typography.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/default-css.css">
@@ -24,6 +26,11 @@
  <style type="text/css">
             .action-icon {
                 font-size: 25px;
+            }
+
+             .table-font-size {
+
+                font-size: 18px;
             }
 
         

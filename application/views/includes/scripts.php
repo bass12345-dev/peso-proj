@@ -30,6 +30,8 @@
     <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
     <!-- others plugins -->
     <script src="assets/js/plugins.js"></script>
     <!-- <script src="assets/js/scripts.js"></script> -->
@@ -344,7 +346,12 @@
 
 
        var activity_table = $('#activity_table').DataTable({
+
             responsive: false,
+             dom: 'Bfrtip',
+        buttons: [
+           'print'
+        ],
             "ajax" : {
                         "url": base_url + 'Type_of_Activity/get_type',
                         "dataSrc": "",
@@ -354,7 +361,40 @@
                 // data: "song_title",
                 data: null,
                 render: function (data, type, row) {
-                    return '<span href="javascript:;"   data-id="'+data['res_center_id']+'"  style="color: #000;" >'+data['type_act_name']+'</span>';
+                    return '<span href="javascript:;"   data-id="'+data['res_center_id']+'"  style="color: #000;" class="table-font-size" >'+data['type_act_name']+'</span>';
+                }
+
+            },
+            {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<ul class="d-flex justify-content-center">\
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'+data['type_act_id']+'" data-name="'+data['type_act_name']+'" id="update-activity"><i class="fa fa-edit"></i></a></li>\
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'+data['type_act_id']+'" data-name="'+data['type_act_name']+'" id="update-under-activity"><i class="fa fa-table"></i></a></li>\
+                                <li><a href="javascript:;" data-id="'+data['type_act_id']+'"  id="delete-activity"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>\
+                                </ul>';
+                }
+
+            },
+          ]
+        });
+
+
+    var under_type_activity_table = $('#under_activity_table').DataTable({
+
+
+
+            "ajax" : {
+                        "url": base_url + 'Type_of_Activity/get_under_type',
+                        "dataSrc": "",
+            },
+             'columns': [
+            {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<span href="javascript:;"   data-id="'+data['under_type_act_id']+'"  style="color: #000;" class="table-font-size" >'+data['under_type_act_name']+'</span>';
                 }
 
             },
@@ -370,9 +410,63 @@
 
             },
           ]
-        });
+    })
 
 
+    $(document).on('click','a#update-under-activity',function (e) {
+
+   
+        $('#update_under_activity_modal').modal('show');
+        $('input[id=act_id]').val($(this).data('id'));
+        $('.type_of_training_title').text($(this).data('name'));
+        $('.under_type_label').text($(this).data('name'));
+
+     });
+
+
+     $('#add_under_activity_form').on('submit', function(e) {
+    e.preventDefault();
+
+
+             $.ajax({
+            type: "POST",
+            url: base_url + 'Type_of_Activity/add_',
+            data: $(this).serialize(),
+            dataType: 'json',
+            beforeSend: function() {
+                $('.btn-add-under-activity').text('Please wait...');
+                $('.btn-add-under-activity').attr('disabled','disabled');
+            },
+            success : function(data)
+            {
+
+                $('#add_under_activity_form')[0].reset();
+                $('.btn-add-under-activity').text('Submit');
+                $('.btn-add-under-activity').removeAttr('disabled');
+               var alert =  $('.alert-add-under-activity').html(' <div class="alert-dismiss mt-2">\
+                                                        <div class="alert alert-success alert-dismissible fade show" role="alert">\
+                                                            <strong>'+data.message+'.\
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span>\
+                                                            </button>\
+                                                            </div>\
+                                                    </div>');
+                
+
+        
+
+                   
+                under_type_activity_table.ajax.reload();
+
+            },
+             error: function(xhr) { // if error occured
+                alert("Error occured.please try again");
+                $('.btn-add-under-activity').text('Submit');
+                $('.btn-add-under-activity').removeAttr('disabled');
+            },
+
+        })
+
+    })
 
 
 
@@ -386,14 +480,14 @@
             dataType: 'json',
             beforeSend: function() {
                 $('.btn-add-activity').text('Please wait...');
-                $('button[type="submit"]').attr('disabled','disabled');
+                $('.btn-add-activity').attr('disabled','disabled');
             },
             success: function(data)
             {            
                 if (data.response) {
                     $('#add_activity_form')[0].reset();
                     $('.btn-add-activity').text('Submit');
-                    $('button[type="submit"]').removeAttr('disabled');
+                    $('.btn-add-activity').removeAttr('disabled');
                     $('.alert').html(' <div class="alert-dismiss mt-2">\
                                                         <div class="alert alert-success alert-dismissible fade show" role="alert">\
                                                             <strong>'+data.message+'.\
@@ -406,7 +500,7 @@
                     activity_table.ajax.reload();
                 }else {
                     $('.btn-add-activity').text('Submit');
-                   $('button[type="submit"]').removeAttr('disabled');
+                   $('.btn-add-activity').removeAttr('disabled');
                      $('.alert').html(' <div class="alert-dismiss mt-2">\
                                                         <div class="alert alert-warning alert-dismissible fade show" role="alert">\
                                                             <strong>'+data.message+'.\
@@ -419,13 +513,18 @@
             error: function(xhr) { // if error occured
                 alert("Error occured.please try again");
                 $('.btn-add-activity').text('Submit');
-                $('button[type="submit"]').attr('disabled','disabled');
+                 $('.btn-add-activity').removeAttr('disabled');
             },
        });
 
 
 
     });
+
+
+
+
+    
 
 
 
