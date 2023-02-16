@@ -1,11 +1,11 @@
-<div class="sidebar-menu">
+<div class="sidebar-menu ">
             <div class="sidebar-header">
                 <div class="logo">
                     <a href="index.html"><img src="peso_logo.png" alt="logo"></a>
                     <!-- <h1 class="text-primary">Hello</h1> -->
                 </div>
             </div>
-            <div class="main-menu">
+            <div class="main-menu " >
                 <div class="menu-inner">
                     <nav>
                         <ul class="metismenu" id="menu">

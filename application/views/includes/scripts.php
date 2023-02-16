@@ -1,14 +1,14 @@
- <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+ <script src="<?php echo base_url(); ?>assets/js/vendor/modernizr-2.8.3.min.js"></script>
     <!-- offset area end -->
     <!-- jquery latest version -->
-    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/vendor/jquery-2.2.4.min.js"></script>
     <!-- bootstrap 4 js -->
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/metisMenu.min.js"></script>
-    <script src="assets/js/jquery.slimscroll.min.js"></script>
-    <script src="assets/js/jquery.slicknav.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/popper.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/owl.carousel.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/metisMenu.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.slimscroll.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.slicknav.min.js"></script>
 
     <!-- start chart js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
@@ -21,9 +21,9 @@
     ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
     </script>
     <!-- all line chart activation -->
-    <script src="assets/js/line-chart.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/line-chart.js"></script>
     <!-- all pie chart -->
-    <script src="assets/js/pie-chart.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/pie-chart.js"></script>
       <!-- Start datatable js -->
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
@@ -33,7 +33,7 @@
     <script src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
     <!-- others plugins -->
-    <script src="assets/js/plugins.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/plugins.js"></script>
     <!-- <script src="assets/js/scripts.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.all.min.js" integrity="sha512-KfbhdnXs2iEeelTjRJ+QWO9veR3rm6BocSoNoZ4bpPIZCsE1ysIRHwV80yazSHKmX99DM0nzjoCZjsjNDE628w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -50,7 +50,7 @@
     "use strict";
 
 
-   
+
 
       /*================================
     Login 
@@ -157,7 +157,7 @@
                 // data: "song_title",
                 data: null,
                 render: function (data, type, row) {
-                    return '<span href="javascript:;"   data-id="'+data['res_center_id']+'" id="kt_explore_toggle" style="color: #000;" >'+data['res_center_name']+'</span>';
+                    return '<a href="javascript:;"   data-id="'+data['res_center_id']+'" data-code="'+data['res_center_code']+'"  style="color: #000;" id="view_transactions" >'+data['res_center_name']+'</a>';
                 }
 
             },
@@ -179,6 +179,15 @@
 
 
     // }
+
+
+
+   $(document).on('click','a#view_transactions',function (e) {
+
+    window.location.href = base_url + 'responsibility_center/view_transactions?id=' + $(this).data('id') + '&&code_number=' + $(this).data('code') ;
+
+
+   })
 
 
 

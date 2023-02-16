@@ -6,6 +6,7 @@
     <?php $this->load->view('includes/css.php') ?> 
 
 
+
 </head>
 
 <body>
@@ -14,14 +15,28 @@
      <?php $this->load->view('includes/preloader.php') ?> 
     <!-- preloader area end -->
     <!-- page container area start -->
-    <div class="page-container">
-        <!-- sidebar menu area start -->
-        <?php $this->load->view('includes/sidebar.php') ?> 
-        <!-- sidebar menu area end -->
-        <!-- main content area start -->
-        <div class="main-content">
+    <div class="page-container " >
+      
+        <div class="main-content ">
             <!-- header area start -->
-            <?php $this->load->view('includes/topbar.php') ?> 
+             <div class="header-area">
+                <div class="row align-items-center">
+                    <!-- nav and search button -->
+                    <div class="col-md-6 col-sm-8 clearfix">
+                        <div class="nav-btn pull-left">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                   
+                    </div>
+                    <!-- profile info & task notification -->
+                    <div class="col-md-6 col-sm-4 clearfix">
+                        <a href="<?php base_url() ?>login" class="pull-right text-danger" style="font-size: 20px;">Logout</a>
+                     
+                    </div>
+                </div>
+            </div>
             <!-- header area end -->
             <!-- page title area start -->
             <?php $this->load->view('includes/breadcrumbs.php') ?> 
@@ -32,17 +47,9 @@
                 <div class="row">
                     <!-- data table start -->
                     <div class="col-12 mt-5">
-                        <div class="card">
+                        <div class="card ">
                             <div class="card-body">
-                                <!-- <div class="row">
-                                    <div class="col-md-6">
-                                        <h4 class="header-title"><?php echo $title ?></h4>
-                                    </div>
-                                    <div class="col-md-6">
-                                         <button class="btn btn-primary pull-right mb-2">Add</button>
-                                    </div>
-                                </div>    -->
-                               
+                            
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="data-tables">
@@ -88,15 +95,8 @@
             </div>
         </div>
         <!-- main content area end -->
-        <!-- footer area start-->
-    <?php $this->load->view('admin/responsibility_center/modal/update_res_modal.php') ?> 
-    <?php $this->load->view('includes/offset.php') ?>  
-        <!-- footer area end-->
-    </div>
-    <!-- page container area end -->
-    <!-- offset area start -->
+       
   
-    <?php $this->load->view('includes/offset.php') ?> 
      <?php $this->load->view('includes/scripts.php') ?> 
    
 </body>

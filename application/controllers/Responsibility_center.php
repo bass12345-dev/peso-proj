@@ -16,6 +16,14 @@ class Responsibility_center extends CI_Controller {
 		$this->load->view('admin/responsibility_center/responsibility_center',$data);
 	}
 
+	public function view_transactions(){
+
+		 $data['title'] = 'Sample';
+       
+		$this->load->view('admin/responsibility_center/view/transactions',$data);
+
+	}
+
 
 	public function add() {
 
