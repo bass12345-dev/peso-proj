@@ -5,6 +5,7 @@ class Back_up extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('admin/dashboard');
+		$data['title'] = 'Back Up Database';
+		$this->load->view('admin/back_up_database/back_up',$data);
 	}
 }

@@ -76,7 +76,7 @@
                             <li><a href="<?php echo base_url() ?>responsibility_center"><i class="ti-map-alt"></i> <span>Responsibilty Center</span></a></li>
                             <li><a href="<?php echo base_url() ?>responsible_section"><i class="ti-map-alt"></i> <span>Responsible Section</span></a></li>
                             <li><a href="<?php echo base_url() ?>type_of_activity"><i class="ti-map-alt"></i> <span>Type of Activity</span></a></li>
-                            <li><a href="<?php echo base_url() ?>responsibility_center"><i class="ti-map-alt"></i> <span>Backup Database</span></a></li>
+                            <li><a href="<?php echo base_url() ?>back_up"><i class="ti-map-alt"></i> <span>Backup Database</span></a></li>
                             <!-- <li><a href="invoice.html"><i class="ti-receipt"></i> <span>Invoice Summary</span></a></li>
                             <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layers-alt"></i> <span>Pages</span></a>

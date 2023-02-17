@@ -15,7 +15,7 @@
      <?php $this->load->view('includes/preloader.php') ?> 
     <!-- preloader area end -->
     <!-- page container area start -->
-    <div class="page-container " >
+    <div class="page-container  sbar_collapsed" >
       
         <div class="main-content ">
             <!-- header area start -->
@@ -23,16 +23,16 @@
                 <div class="row align-items-center">
                     <!-- nav and search button -->
                     <div class="col-md-6 col-sm-8 clearfix">
-                        <div class="nav-btn pull-left">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
+                        <span style="font-size:23px;">
+                            <a href="<?php echo base_url() ?>responsibility_center" style="color: #000;">
+                            <i class="fa fa-arrow-left"></i>
+                            </a>
+                        </span>
                    
                     </div>
                     <!-- profile info & task notification -->
                     <div class="col-md-6 col-sm-4 clearfix">
-                        <a href="<?php base_url() ?>login" class="pull-right text-danger" style="font-size: 20px;">Logout</a>
+                        <a href="<?php echo base_url() ?>login" class="pull-right text-danger" style="font-size: 20px;">Logout</a>
                      
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="data-tables">
-                                            <table id="responsibility_table" style="width:100%" class="text-center">
+                                            <table id="responsibilitytable" style="width:100%" class="text-center">
                                                 <thead class="bg-light text-capitalize">
                                                     <tr>
                                                         <th>Responsibilty Center Code</th>

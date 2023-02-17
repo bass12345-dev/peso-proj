@@ -835,6 +835,12 @@
 
 
 
+    $(document).on('click','button.back-up-database',function (e) {
+
+            alert('asd')
+
+    })
+
 
 
 
