@@ -68,7 +68,7 @@
                                                     </div>
 
                                               
-                                                    <button  type="submit" class="btn btn-primary mt-1 pr-4 pl-4 btn-add-responsible"> Submit</button>
+                                                    <button  type="submit" class="btn  mt-1 pr-4 pl-4 btn-add-responsible" style="background-color: #3F6BA4; color: #fff;"> Submit</button>
                                                     
                                                     <div class="alert"></div>
                                                    <!--  -->

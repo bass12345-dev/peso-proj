@@ -18,10 +18,16 @@ class Responsibility_center extends CI_Controller {
 
 	public function view_transactions(){
 
-		 $data['title'] = 'Sample';
+		 $data['title'] = $this->GetModel->get($this->responsibility_center,array('res_center_id' => $_GET['id']))[0]['res_center_name'];
        
 		$this->load->view('admin/responsibility_center/view/transactions',$data);
 
+	}
+
+	public function add_t(){
+
+		 $data['title'] = $this->GetModel->get($this->responsibility_center,array('res_center_id' => $_GET['id']))[0]['res_center_name'];
+		$this->load->view('admin/responsibility_center/view/add_section/add',$data);
 	}
 
 

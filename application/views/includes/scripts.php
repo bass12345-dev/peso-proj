@@ -157,7 +157,7 @@
                 // data: "song_title",
                 data: null,
                 render: function (data, type, row) {
-                    return '<a href="javascript:;"   data-id="'+data['res_center_id']+'" data-code="'+data['res_center_code']+'"  style="color: #000;" id="view_transactions" >'+data['res_center_name']+'</a>';
+                    return '<a href="javascript:;"  class="a"  data-id="'+data['res_center_id']+'" data-code="'+data['res_center_code']+'"  style="color: #000;" id="view_transactions" >'+data['res_center_name']+'</a>';
                 }
 
             },
@@ -185,7 +185,6 @@
    $(document).on('click','a#view_transactions',function (e) {
 
     window.location.href = base_url + 'responsibility_center/view_transactions?id=' + $(this).data('id') + '&&code_number=' + $(this).data('code') ;
-
 
    })
 
@@ -830,6 +829,16 @@
 
 
 
+
+        /*================================
+   Transactions Section
+    ==================================*/
+
+
+      var transaction_table = $('#transactions_table').DataTable({
+
+
+      })
    
 
 
@@ -837,9 +846,43 @@
 
     $(document).on('click','button.back-up-database',function (e) {
 
-            alert('asd')
+             $.ajax({
+            url: base_url + 'Back_up/save',
+            beforeSend: function() {
+                $('.back-up-database').text('Please wait...');
+                $('.back-up-database').prop("disabled", true);
+                
+            },
 
-    })
+              success: function(data)
+            {            
+                if (data.response) {
+
+
+                    Toastify({
+                                  text: 'success',
+                                  className: "info",
+                                  style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                  }
+                                }).showToast();
+
+
+
+                }
+
+            }
+
+
+            })
+
+         })
+
+
+
 
 
 

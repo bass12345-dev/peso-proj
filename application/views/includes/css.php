@@ -34,7 +34,7 @@
             }
 
 
-            a:hover {
+            .a:hover {
                     
                     font-size: 25px;
                    text-decoration: underline;

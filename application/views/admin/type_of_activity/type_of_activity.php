@@ -65,7 +65,7 @@
                                                         <label for="exampleInputEmail1">Type of Activity</label>
                                                             <input  type="text" class="form-control" id="activity" name="activity"  placeholder="" required>      
                                                     </div>
-                                                    <button  type="submit" class="btn btn-primary mt-1 pr-4 pl-4 btn-add-activity"> Submit</button>
+                                                    <button  type="submit" class="btn  mt-1 pr-4 pl-4 btn-add-activity" style="background-color: #3F6BA4; color: #fff;"> Submit</button>
                                                     
                                                     <div class="alert"></div>
                                                    <!--  -->

@@ -72,7 +72,7 @@
                                                         <label for="exampleInputPassword1">Responsibilty Center Name</label>
                                                             <input type="text" class="form-control" id="center_name" name="center_name" placeholder="" required>
                                                     </div>
-                                                    <button  type="submit" class="btn btn-primary mt-1 pr-4 pl-4 btn-add-center"> Submit</button>
+                                                    <button  type="submit" class="btn mt-1 pr-4 pl-4 btn-add-center"style="background-color: #3F6BA4; color: #fff;"> Submit</button>
                                                     
                                                     <div class="alert"></div>
                                                    <!--  -->
