@@ -144,8 +144,18 @@
                         "url": base_url + 'Responsibility_center/get_center',
                         "dataSrc": "",
             },
+
+
              'columns': [
             {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<input type="checkbox" id="respon_center_id" name="respon_center_id" value="'+data['res_center_id']+'">';
+                }
+
+            },
+             {
                 // data: "song_title",
                 data: null,
                 render: function (data, type, row) {
@@ -181,6 +191,29 @@
     // }
 
 
+    $(document).on('click','button#delete-multiple-center',function (e) {
+
+
+        var selectedValues = [];
+
+        $('input[name=respon_center_id]:checked').map(function() {
+                    selectedValues.push($(this).val());
+
+        });
+
+
+
+
+
+        if (selectedValues.length < 1) {
+            alert('please Select at least one');
+        }else {
+
+            del(selectedValues,res_center_table,'Responsibility_center/delete');
+        }
+
+
+    })
 
    $(document).on('click','a#view_transactions',function (e) {
 
@@ -244,6 +277,10 @@
 
 
     });
+
+
+
+
 
 
 
@@ -318,8 +355,8 @@
            },
             error: function(xhr) { // if error occured
                 alert("Error occured.please try again");
-                $('.btn-add-center').text('Save Changes');
-                $('button[type="submit"]').attr('disabled','disabled');
+                $('button[name="btn-update-center"]').prop("disabled", false);
+                $('.btn-update-center').text('Save Changes');
             },
 
         })
@@ -346,7 +383,7 @@
             
                     $.ajax({
                             type: "POST",
-                            url: base_url +url,
+                            url: base_url + url,
                             data: {id:id},
                             cache: false,
                             dataType: 'json', 

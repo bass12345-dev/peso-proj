@@ -39,7 +39,7 @@
                                         <h4 class="header-title"><?php echo $title ?></h4>
                                     </div>
                                     <div class="col-md-6">
-                                         <button class="btn btn-primary pull-right mb-2 back-up-database">Back Up Now</button>
+                                         <button class="btn  pull-right mb-2 back-up-database sub-button">Back Up Now</button>
                                     </div>
                                 </div>   
                                

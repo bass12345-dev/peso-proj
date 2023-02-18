@@ -49,14 +49,15 @@
                                             <table id="responsibility_table" style="width:100%" class="text-center">
                                                 <thead class="bg-light text-capitalize">
                                                     <tr>
+                                                        <th></th>
                                                         <th>Responsibilty Center Code</th>
                                                         <th>Responsibility Center</th>
                                                        <th>Actions</th>
                                                         
                                                     </tr>
                                                 </thead>
-                                               
                                             </table>
+                                             <button  type="button" class="btn mt-1 mb-4 pr-4 pl-4 btn-add-center btn-danger " id="delete-multiple-center">Delete</button>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -72,7 +73,7 @@
                                                         <label for="exampleInputPassword1">Responsibilty Center Name</label>
                                                             <input type="text" class="form-control" id="center_name" name="center_name" placeholder="" required>
                                                     </div>
-                                                    <button  type="submit" class="btn mt-1 pr-4 pl-4 btn-add-center"style="background-color: #3F6BA4; color: #fff;"> Submit</button>
+                                                    <button  type="submit" class="btn mt-1 pr-4 pl-4 btn-add-center sub-button"> Submit</button>
                                                     
                                                     <div class="alert"></div>
                                                    <!--  -->

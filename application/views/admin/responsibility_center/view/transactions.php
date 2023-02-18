@@ -47,9 +47,9 @@
                 <div class="row">
                     <!-- data table start -->
                     <div class="col-12 mt-5">
-                        <div class="card ">
+                        <div class="card " style="border: 1px solid;">
                             <div class="card-body">
-                                <a href="<?php echo base_url() ?>responsibility_center/add_t?id=<?php echo $_GET['id'] ?>&&code=<?php echo $_GET['code_number'] ?>" class="btn btn-primary mb-3" style="background-color: #3F6BA4; color: #fff;"> Add Transactions</a> 
+                                <a href="<?php echo base_url() ?>responsibility_center/add_t?id=<?php echo $_GET['id'] ?>&&code=<?php echo $_GET['code_number'] ?>" class="btn  mb-3 sub-button" > Add Transactions</a> 
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="card">      

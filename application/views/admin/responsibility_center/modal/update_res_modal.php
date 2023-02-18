@@ -11,20 +11,22 @@
                   </div>
                   <form id="update_responsibility_center_form">
                   <div class="modal-body">
-                      <div class="form-group">
+                    <!--   <div class="form-group">
                           <label for="exampleInputEmail1">Responsibility Center Code</label>
                           <input type="text" class="form-control"  name="update_center_code" placeholder="">
                           <input type="hidden" class="form-control" id="res_center_id" name="res_center_id" placeholder="" required>
-                      </div>
+                          
+                      </div> -->
+                      <input type="hidden" class="form-control" id="res_center_id" name="res_center_id" placeholder="" required>
                       <div class="form-group">
                           <label for="exampleInputPassword1">Responsibility Center Name</label>
                           <input type="text" class="form-control" name="update_center_name"  placeholder="" required>
                       </div>
-                      <div class="alert"></div>
+                      
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn  btn-update-center" name="btn-update-center" style="background-color: #3F6BA4; color: #fff;">Save changes</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn  btn-update-center sub-button" name="btn-update-center " >Save changes</button>
                   </div>
                   </form>
 

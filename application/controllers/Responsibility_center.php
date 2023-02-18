@@ -95,12 +95,33 @@ class Responsibility_center extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	// public function delete(){
+
+	// 	$where = 'res_center_id ='.$_POST['id'];
+	// 	$delete = $this->DeleteModel->delete($this->responsibility_center,$where);
+	// 	$params = array('cond' => $delete, 'message' => 'Successfully Deleted');
+	// 	$this->load->library('Condition', $params);
+	// }
+
+
 	public function delete(){
 
-		$where = 'res_center_id ='.$_POST['id'];
-		$delete = $this->DeleteModel->delete($this->responsibility_center,$where);
-		$params = array('cond' => $delete, 'message' => 'Successfully Deleted');
-		$this->load->library('Condition', $params);
+
+		if (is_array($_POST['id'])) {
+
+			foreach ($_POST['id'] as $row) {
+					$where = 'res_center_id ='.$row;
+					$delete = $this->DeleteModel->delete($this->responsibility_center,$where);
+			}
+			$params = array('cond' => $delete, 'message' => 'Successfully Deleted');
+			$this->load->library('Condition', $params);
+
+		}else {
+			$where = 'res_center_id ='.$_POST['id'];
+			$delete = $this->DeleteModel->delete($this->responsibility_center,$where);
+			$params = array('cond' => $delete, 'message' => 'Successfully Deleted');
+			$this->load->library('Condition', $params);
+		}
 	}
 
 	public function update(){
@@ -108,7 +129,7 @@ class Responsibility_center extends CI_Controller {
 
 		$data = array(
 
-				'res_center_code' => $_POST['update_center_code'],
+				// 'res_center_code' => $_POST['update_center_code'],
 				'res_center_name' =>$_POST['update_center_name']
 		);
 

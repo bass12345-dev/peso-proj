@@ -213,35 +213,35 @@
                                                       <div class="form-group row">
                                                         <label for="inputPassword3" class="col-sm-4 col-form-label">Total Production</label>
                                                         <div class="col-sm-8">
-                                                          <input type="password" class="form-control" id="inputPassword3" placeholder="">
+                                                          <input type="text" class="form-control" id="inputPassword3" placeholder="">
                                                         </div>
                                                       </div>
 
                                                       <div class="form-group row">
                                                         <label for="inputPassword3" class="col-sm-4 col-form-label">Total Collection/Sales</label>
                                                         <div class="col-sm-8">
-                                                          <input type="password" class="form-control" id="inputPassword3" placeholder="">
+                                                          <input type="text" class="form-control" id="inputPassword3" placeholder="">
                                                         </div>
                                                       </div>
 
                                                       <div class="form-group row">
                                                         <label for="inputPassword3" class="col-sm-4 col-form-label">Total Released/Purchases</label>
                                                         <div class="col-sm-8">
-                                                          <input type="password" class="form-control" id="inputPassword3" placeholder="">
+                                                          <input type="text" class="form-control" id="inputPassword3" placeholder="">
                                                         </div>
                                                       </div>
 
                                                        <div class="form-group row">
                                                         <label for="inputPassword3" class="col-sm-4 col-form-label">Total Delinquent Account</label>
                                                         <div class="col-sm-8">
-                                                          <input type="password" class="form-control" id="inputPassword3" placeholder="">
+                                                          <input type="text" class="form-control" id="inputPassword3" placeholder="">
                                                         </div>
                                                       </div>
 
                                                        <div class="form-group row">
                                                         <label for="inputPassword3" class="col-sm-4 col-form-label">Total Over-due Account</label>
                                                         <div class="col-sm-8">
-                                                          <input type="password" class="form-control" id="inputPassword3" placeholder="">
+                                                          <input type="text" class="form-control" id="inputPassword3" placeholder="">
                                                         </div>
                                                       </div>
 
@@ -249,7 +249,7 @@
                                                       <div class="form-group row">
                                                         <label for="inputPassword3" class="col-sm-4 col-form-label">Cash in Bank</label>
                                                         <div class="col-sm-8">
-                                                          <input type="password" class="form-control" id="inputPassword3" placeholder="">
+                                                          <input type="text" class="form-control" id="inputPassword3" placeholder="">
                                                         </div>
                                                       </div>
 
@@ -257,7 +257,7 @@
                                                       <div class="form-group row">
                                                         <label for="inputPassword3" class="col-sm-4 col-form-label">Cash on hand</label>
                                                         <div class="col-sm-8">
-                                                          <input type="password" class="form-control" id="inputPassword3" placeholder="">
+                                                          <input type="text" class="form-control" id="inputPassword3" placeholder="">
                                                         </div>
                                                       </div>
 
@@ -273,11 +273,11 @@
                                                         <label for="inputPassword3" class="col-sm-4 col-form-label">Are book of accounts updated</label>
                                                         <div class="col-sm-8">
                                                           <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="customCheckDisabled" disabled>
+                                                            <input type="checkbox" class="custom-control-input" >
                                                             <label class="custom-control-label" for="customCheckDisabled">Yes </label>
                                                           </div>
                                                           <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="customCheckDisabled" disabled>
+                                                            <input type="checkbox" class="custom-control-input"  >
                                                             <label class="custom-control-label" for="customCheckDisabled">No </label>
                                                           </div>
 
@@ -288,11 +288,11 @@
                                                         <label for="inputPassword3" class="col-sm-4 col-form-label">Is the aging of accounts listed at the back?</label>
                                                         <div class="col-sm-8">
                                                           <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="customCheckDisabled" disabled>
+                                                            <input type="checkbox" class="custom-control-input"  >
                                                             <label class="custom-control-label" for="customCheckDisabled">Yes </label>
                                                           </div>
                                                           <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="customCheckDisabled" disabled>
+                                                            <input type="checkbox" class="custom-control-input"   >
                                                             <label class="custom-control-label" for="customCheckDisabled">No </label>
                                                           </div>
 
