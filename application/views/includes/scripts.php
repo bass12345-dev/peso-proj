@@ -853,14 +853,15 @@
                 $('.back-up-database').prop("disabled", true);
                 
             },
-
+            dataType : 'json',
               success: function(data)
             {            
                 if (data.response) {
 
-
+                    $('.back-up-database').prop("disabled", false);    
+                     $('.back-up-database').text('Back up Now');
                     Toastify({
-                                  text: 'success',
+                                  text: data.message,
                                   className: "info",
                                   style: {
                                     "background" : "linear-gradient(to right, #00b09b, #96c93d)",

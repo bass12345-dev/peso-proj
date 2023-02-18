@@ -10,6 +10,15 @@ class Type_of_activity extends CI_Controller {
 	public $order_key = 'created';
 	public $order_key_name = 'type_act_name';
 	public $order_under_type_act_name = 'type_act_name';
+
+	public function __construct()
+    {
+        parent::__construct();
+
+         if (!$this->session->userdata('user_id')) {
+            redirect('login');
+        }
+    }
 	
 	public function index()
 	{   

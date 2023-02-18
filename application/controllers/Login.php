@@ -4,6 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller {
 
 	public $users_table = 'users';
+
+
+	public function __construct()
+    {
+        parent::__construct();
+
+         if ($this->session->userdata('user_id')) {
+            redirect('');
+        }
+    }
 	
 	public function index()
 	{
@@ -35,7 +45,7 @@ class Login extends CI_Controller {
             if ($x) {
                       $data['res'] = true;
                       $data['message'] = 'Success';
-                      // $this->session->set_userdata($user);
+                      $this->session->set_userdata($user);
 
             }else {
 

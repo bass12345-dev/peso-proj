@@ -9,6 +9,15 @@ class Responsible_section extends CI_Controller {
 	public $order_by_asc = 'asc';
 	public $order_key = 'created';
 
+	public function __construct()
+    {
+        parent::__construct();
+
+         if (!$this->session->userdata('user_id')) {
+            redirect('login');
+        }
+    }
+
 
 	public function index()
 	{	

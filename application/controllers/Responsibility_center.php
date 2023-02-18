@@ -8,6 +8,15 @@ class Responsibility_center extends CI_Controller {
 	public $order_by_asc = 'asc';
 	public $order_key = 'created';
 	public $order_key_code = 'res_center_code';
+
+	public function __construct()
+    {
+        parent::__construct();
+
+         if (!$this->session->userdata('user_id')) {
+            redirect('login');
+        }
+    }
 	
 	public function index()
 	{   
