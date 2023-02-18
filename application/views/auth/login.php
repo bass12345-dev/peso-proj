@@ -31,7 +31,8 @@
                             <div class="form-gp">
                                 <label for="exampleInputPassword1">Password</label>
                                     <input type="password" id="exampleInputPassword1" name="password" required>
-                                        <i class="ti-lock"></i>
+                                    <i class="ti-lock lock"></i>
+                                     
 
                             </div>
 
@@ -63,6 +64,9 @@
         </div>
     </div>
      <?php $this->load->view('includes/scripts.php') ?> 
+     <script type="text/javascript">
+       
+     </script>
    
 </body>
 

@@ -253,6 +253,12 @@
                                                     </div>');
                       
                     res_center_table.ajax.reload();
+
+                     setTimeout(function() { 
+                        $('.alert').html('')
+                    }, 3000);
+
+
                 }else {
                     $('.btn-add-center').text('Submit');
                      $('button[type="submit"]').removeAttr('disabled');
@@ -543,7 +549,9 @@
                 
 
         
-
+                setTimeout(function() { 
+                        $('.alert').html('')
+                    }, 3000);
                    
                 under_type_activity_table.ajax.reload();
 
@@ -585,7 +593,9 @@
                                                             </button>\
                                                             </div>\
                                                     </div>');
-                    
+                     setTimeout(function() { 
+                        $('.alert').html('')
+                    }, 3000);
                    
                     activity_table.ajax.reload();
                 }else {
@@ -759,7 +769,9 @@
                                                             </div>\
                                                     </div>');
                     
-                   
+                    setTimeout(function() { 
+                        $('.alert').html('')
+                    }, 3000);
                     responsible_section_table.ajax.reload();
                 }else {
                     $('.btn-add-responsible').text('Submit');
