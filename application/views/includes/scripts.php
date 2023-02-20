@@ -372,66 +372,7 @@
 
 
 
-    //delete function
 
-     function del(id,table,url){
-
-           Swal.fire({
-        title: "Are you sure?",
-        text: "You wont be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes, delete it!",
-        cancelButtonText: "No, cancel!",
-        reverseButtons: true
-    }).then(function(result) {
-        if (result.value) {
-            
-                    $.ajax({
-                            type: "POST",
-                            url: base_url + url,
-                            data: {id:id},
-                            cache: false,
-                            dataType: 'json', 
-                            beforeSend : function(){
-
-                                  Swal.fire({
-                                title: "",
-                                text: "Please Wait",
-                                icon: "",
-                                showCancelButton: false,
-                                showConfirmButton : false,
-                                reverseButtons: false,
-                                allowOutsideClick : false
-                            })
-
-                            },
-                            success: function(data){
-                               if (data.response) {
-
-                                  Swal.fire(
-                "",
-                "Deleted Successfully",
-                "success"
-            )
-                                
-                               }
-
-                                table.ajax.reload();
-                            }
-                    })
-
-
-
-            // result.dismiss can be "cancel", "overlay",
-            // "close", and "timer"
-        } else if (result.dismiss === "cancel") {
-           swal.close()
-
-        }
-    });
-
-     }
 
 
        /*================================
@@ -930,6 +871,71 @@
             })
 
          })
+
+
+
+
+
+        //delete function
+
+     function del(id,table,url){
+
+           Swal.fire({
+        title: "Are you sure?",
+        text: "You wont be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+    }).then(function(result) {
+        if (result.value) {
+            
+                    $.ajax({
+                            type: "POST",
+                            url: base_url + url,
+                            data: {id:id},
+                            cache: false,
+                            dataType: 'json', 
+                            beforeSend : function(){
+
+                                  Swal.fire({
+                                title: "",
+                                text: "Please Wait",
+                                icon: "",
+                                showCancelButton: false,
+                                showConfirmButton : false,
+                                reverseButtons: false,
+                                allowOutsideClick : false
+                            })
+
+                            },
+                            success: function(data){
+                               if (data.response) {
+
+                                  Swal.fire(
+                "",
+                "Deleted Successfully",
+                "success"
+            )
+                                
+                               }
+
+                                table.ajax.reload();
+                            }
+                    })
+
+
+
+            // result.dismiss can be "cancel", "overlay",
+            // "close", and "timer"
+        } else if (result.dismiss === "cancel") {
+           swal.close()
+
+        }
+    });
+
+     }
 
 
 

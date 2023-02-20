@@ -19,20 +19,20 @@
         <?php $this->load->view('includes/sidebar.php') ?> 
         <!-- sidebar menu area end -->
         <!-- main content area start -->
-        <div class="main-content">
+        <div class="main-content ">
             <!-- header area start -->
             <?php $this->load->view('includes/topbar.php') ?> 
             <!-- header area end -->
             <!-- page title area start -->
             <?php $this->load->view('includes/breadcrumbs.php') ?> 
             <!-- page title area end -->
-            <div class="main-content-inner ">
+            <div class="main-content-inner  ">
 
 
                 <div class="row">
                     <!-- data table start -->
                     <div class="col-12 mt-5">
-                        <div class="card" style="border: 1px solid;">
+                        <div class="card  animate__animated animate__zoomInDown " style="border: 1px solid;">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">

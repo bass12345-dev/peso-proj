@@ -16,7 +16,7 @@
     <div class="login-area login-bg" >
         
         <div class="container">
-            <div class="login-box ptb--100">
+            <div class="login-box ptb--100 animate__animated animate__zoomInDown">
                 <form id="login_form">
                     <div class="login-form-head">
                       
